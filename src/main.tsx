@@ -5,7 +5,7 @@ import App from './App';
 import ErrorBoundary from './components/ErrorBoundary';
 import { loadFonts } from './lib/loadFonts';
 import './index.css';
-import { Analytics } from '@vercel/analytics/nuxt/runtime';
+import { Analytics } from "@vercel/analytics/react"
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
