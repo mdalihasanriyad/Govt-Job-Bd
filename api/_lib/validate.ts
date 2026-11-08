@@ -43,7 +43,17 @@ export const OPTIONAL_JOB_KEYS = [
   'applyUrl', 'sourceUrl', 'circularRef', 'seoTitle', 'metaDescription', 'featuredImage',
 ] as const;
 
-export type ParseResult<T> = { ok: true; value: T } | { ok: false; errors: Record<string, string> };
+// export type ParseResult<T> = { ok: true; value: T } | { ok: false; errors: Record<string, string> };
+
+export type ParseResult<T> =
+  | {
+      ok: true;
+      value: T;
+    }
+  | {
+      ok: false;
+      errors: Record<string, string>;
+    };
 
 const CONTROL_CHARS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
 
