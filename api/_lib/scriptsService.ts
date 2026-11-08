@@ -6,7 +6,7 @@ import { aiConfig, generateText } from './aiProvider.js';
 import { hit } from './rateLimit.js';
 import { cleanString } from './validate.js';
 
-const SITE_URL = 'https://govtjob.bd';
+const SITE_URL = 'https://govtjobbd.vercel.app/';
 const MAX_SCRIPTS_PER_JOB = 20;
 const MAX_CONTENT = 20000;
 

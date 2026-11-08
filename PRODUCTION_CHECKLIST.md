@@ -10,9 +10,9 @@ Tick each line before announcing the site. "How" is what to do; run `npm run smo
 - [ ] `npm run db:setup` run against the production database; admin created with `npm run create-admin`
 - [ ] Function Region matches the Atlas region
 
-## B. API tests (`npm test` locally, then `npm run smoke -- https://govtjob.bd`)
+## B. API tests (`npm test` locally, then `npm run smoke -- https://govtjobbd.vercel.app/`)
 - [ ] `npm test` passes (routing layout, router and public-data contract tests)
-- [ ] `curl.exe -i https://govtjob.bd/api/public/home` returns JSON (not an HTML 404 page)
+- [ ] `curl.exe -i https://govtjobbd.vercel.app//api/public/home` returns JSON (not an HTML 404 page)
 - [ ] All checks pass (health, database, public lists, 404s, auth rejections, CSRF, forms, sitemap, SSR metadata, headers)
 - [ ] Manual: publish a job, see it on `/`, `/jobs`, its category and organization pages
 - [ ] Manual: unpublish it → 404 within about 5 minutes; delete it → comments and scripts removed
@@ -46,7 +46,7 @@ Test at **360×640**, **390×844**, **768×1024**, **1280×800**.
 - [ ] Rich Results Test: open job → JobPosting detected; expired job → none
 - [ ] `/sitemap.xml` valid and lists only published jobs; submitted in Search Console
 - [ ] Facebook/WhatsApp link preview shows title and image
-- [ ] Unknown URL returns a real 404 (`curl.exe -I https://govtjob.bd/jobs/nope`)
+- [ ] Unknown URL returns a real 404 (`curl.exe -I https://govtjobbd.vercel.app//jobs/nope`)
 
 ## G. Error handling
 - [ ] Turn off Wi-Fi on a loaded page and click around → friendly Bengali error with retry, no blank page

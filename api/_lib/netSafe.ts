@@ -8,7 +8,7 @@ import { request } from 'node:https';
  * result (and every redirect hop) must be a public address, bounded size and time.
  */
 
-export const IMPORT_USER_AGENT = 'GovtJobBD-Importer/1.0 (+https://govtjob.bd)';
+export const IMPORT_USER_AGENT = 'GovtJobBD-Importer/1.0 (+https://govtjobbd.vercel.app/)';
 
 export class FetchError extends Error {
   status?: number;

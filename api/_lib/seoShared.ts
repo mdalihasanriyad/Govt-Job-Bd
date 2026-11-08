@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://govtjob.bd';
+export const SITE_URL = 'https://govtjobbd.vercel.app/';
 export const SITE_NAME = 'GovtJob.bd';
 export const DEFAULT_IMAGE = `${SITE_URL}/og-default.png`;
 /** Jobs expired for longer than this are marked noindex and left out of the sitemap. */

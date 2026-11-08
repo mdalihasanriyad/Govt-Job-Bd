@@ -130,13 +130,13 @@ Do not assume DNS is already pointing to Vercel.
 
 ```powershell
 curl.exe -I http://govtjob.bd          # expect a redirect (308) to https://
-curl.exe -I https://govtjob.bd         # expect 200 and Strict-Transport-Security, Content-Security-Policy
-curl.exe -I https://www.govtjob.bd     # expect 308 to https://govtjob.bd
-npm run smoke -- https://govtjob.bd
+curl.exe -I https://govtjobbd.vercel.app/         # expect 200 and Strict-Transport-Security, Content-Security-Policy
+curl.exe -I https://www.govtjob.bd     # expect 308 to https://govtjobbd.vercel.app/
+npm run smoke -- https://govtjobbd.vercel.app/
 ```
 In the browser: padlock shown, no mixed-content warnings, DevTools Console has **no CSP violations**.
 
-Then register the site: Google Search Console (add `govtjob.bd`, verify with the DNS TXT record) → *Sitemaps* → submit `https://govtjob.bd/sitemap.xml`. Optionally Bing Webmaster Tools.
+Then register the site: Google Search Console (add `govtjob.bd`, verify with the DNS TXT record) → *Sitemaps* → submit `https://govtjobbd.vercel.app//sitemap.xml`. Optionally Bing Webmaster Tools.
 
 ## 9. Backups (Atlas free tier has none)
 
@@ -156,7 +156,7 @@ Upgrading the cluster to M10+ enables Atlas continuous backups.
 | Symptom | Likely cause and fix |
 |---|---|
 | Vercel build fails at `tsc -b` | Run `npm run build` locally, read the first error, fix, push. |
-| Vercel's own **404 page** on `/api/public/...` or `/api/admin/...`, but `/api/health` works | Fixed in the audit release: the API entry is `api/index.ts` plus a `/api/:path+` rewrite in `vercel.json` (Vercel only matches one segment for catch-all files outside Next.js). Check with `curl.exe -i https://govtjob.bd/api/public/categories`: JSON = the app answered; an HTML page with `X-Vercel-Error: NOT_FOUND` = the request never reached the function (check `vercel.json` and that `api/index.ts` was deployed). |
+| Vercel's own **404 page** on `/api/public/...` or `/api/admin/...`, but `/api/health` works | Fixed in the audit release: the API entry is `api/index.ts` plus a `/api/:path+` rewrite in `vercel.json` (Vercel only matches one segment for catch-all files outside Next.js). Check with `curl.exe -i https://govtjobbd.vercel.app//api/public/categories`: JSON = the app answered; an HTML page with `X-Vercel-Error: NOT_FOUND` = the request never reached the function (check `vercel.json` and that `api/index.ts` was deployed). |
 | `server_misconfigured` / "কনফিগারেশন সম্পূর্ণ নয়" | `MONGODB_URI` or `MONGODB_DB` missing/invalid in Vercel. Add them, then **Redeploy** (variables apply only to new deployments). |
 | `database:false`, timeouts | Atlas *Network Access* does not allow `0.0.0.0/0`, wrong password, or special characters not URL-encoded. |
 | `querySrv ECONNREFUSED` (local) | Your DNS blocks SRV lookups. Switch Windows DNS to 8.8.8.8 / 1.1.1.1, or use Atlas's non-SRV connection string. |

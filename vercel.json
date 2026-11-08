@@ -19,7 +19,7 @@
           "value": "www.govtjob.bd"
         }
       ],
-      "destination": "https://govtjob.bd/:path",
+      "destination": "https://govtjobbd.vercel.app//:path",
       "permanent": true
     }
   ],

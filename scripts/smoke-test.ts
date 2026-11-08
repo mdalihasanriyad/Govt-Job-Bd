@@ -1,7 +1,7 @@
 // Usage:
 //   npm run smoke                              (tests http://localhost:5173 — start `npm run dev` first)
 //   npm run smoke -- https://your-project.vercel.app
-//   npm run smoke -- https://govtjob.bd
+//   npm run smoke -- https://govtjobbd.vercel.app/
 //
 // Read-only checks plus a few harmless rejected requests. No credentials are needed or used.
 
@@ -181,7 +181,7 @@ async function main(): Promise<void> {
   await check('Sitemap is valid XML', async () => {
     const res = await get(isLocal ? '/api/sitemap' : '/sitemap.xml');
     const xml = await res.text();
-    expect(res.status === 200 && xml.includes('<urlset') && xml.includes('<loc>https://govtjob.bd/</loc>'), `status ${res.status}`);
+    expect(res.status === 200 && xml.includes('<urlset') && xml.includes('<loc>https://govtjobbd.vercel.app//</loc>'), `status ${res.status}`);
     expect(!String(res.headers.get('x-robots-tag') ?? '').includes('noindex'), 'sitemap is marked noindex');
     return `${(xml.match(/<url>/g) ?? []).length} URLs`;
   });
@@ -191,7 +191,7 @@ async function main(): Promise<void> {
       const res = await get(isLocal ? `/api/ssr?kind=job&slug=${firstSlug}` : `/jobs/${firstSlug}`);
       const html = await res.text();
       expect(res.status === 200, `status ${res.status}`);
-      expect(html.includes(`rel="canonical" href="https://govtjob.bd/jobs/${firstSlug}"`), 'canonical missing');
+      expect(html.includes(`rel="canonical" href="https://govtjobbd.vercel.app//jobs/${firstSlug}"`), 'canonical missing');
       expect(html.includes('application/ld+json'), 'JSON-LD missing');
       expect((html.match(/<title>/g) ?? []).length === 1, 'duplicate <title>');
     });
